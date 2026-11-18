@@ -1,0 +1,205 @@
+/**
+ * Sistema de Tokens y Estilos Globales de SB-Finance.
+ *
+ * Arquitectura y decisiones técnicas:
+ * - Paleta estricta Amarillo (#FACC15) y Negro (#0A0A0A / #121212) con colores
+ *   semánticos exclusivos para indicadores financieros (#22C55E ingresos/disponible
+ *   y #EF4444 gastos/alertas), evitando el negro puro #000000 para reducir fatiga visual.
+ * - Contenedor simétrico `.wrap` con max-width 1360px y padding horizontal equilibrado
+ *   en desktop, tablet y mobile (390px/320px).
+ * - Tipografía `tabular-nums` en montos y porcentajes para alinear columnas contables.
+ * - Bajo `prefers-reduced-motion: reduce`, se elimina el desplazamiento espacial (`transform`)
+ *   conservando transiciones sutiles de opacidad/color (`150ms`) y reemplazando la rotación
+ *   de `.animate-spin` por una pulsación de opacidad para no congelar el feedback de carga.
+ */
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #0a0a0a;
+  --color-bg-surface: #121212;
+  --color-bg-elevated: #1a1a1a;
+  --color-border-subtle: #262626;
+  --color-border-strong: #363636;
+  --color-brand-yellow: #facc15;
+  --color-brand-yellow-hover: #eab308;
+  --color-ink-primary: #fafafa;
+  --color-ink-secondary: #d4d4d4;
+  --color-ink-muted: #a3a3a3;
+  --color-semantic-green: #22c55e;
+  --color-semantic-red: #ef4444;
+}
+
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-surface: #121212;
+  --bg-elevated: #1a1a1a;
+  --border-subtle: #262626;
+  --border-strong: #363636;
+
+  --brand-yellow: #facc15;
+  --brand-yellow-hover: #eab308;
+  --brand-yellow-muted: rgba(250, 204, 21, 0.14);
+
+  --ink-primary: #fafafa;
+  --ink-secondary: #d4d4d4;
+  --ink-muted: #a3a3a3;
+
+  --semantic-green: #22c55e;
+  --semantic-green-muted: rgba(34, 197, 94, 0.12);
+  --semantic-red: #ef4444;
+  --semantic-red-muted: rgba(239, 68, 68, 0.12);
+
+  --r-sm: 6px;
+  --r-md: 8px;
+  --r-lg: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--ink-primary);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+.font-mono-num,
+.tabular-nums {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Contenedor simétrico principal */
+.wrap {
+  width: 100%;
+  max-width: 1360px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+@media (min-width: 640px) {
+  .wrap {
+    padding-inline: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wrap {
+    padding-inline: 40px;
+  }
+}
+
+/* Skip link accesible para teclado */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 8px;
+  z-index: 100;
+  background-color: var(--brand-yellow);
+  color: #0a0a0a;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: var(--r-sm);
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 16px;
+  outline: 2px solid var(--ink-primary);
+  outline-offset: 2px;
+}
+
+/* Foco accesible inmediato en Amarillo de marca */
+.focus-ring:focus-visible,
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--brand-yellow);
+  outline-offset: 2px;
+}
+
+/* Micro-interacciones silenciosas de tarjetas y botones */
+.card-interactive {
+  transition:
+    transform 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.card-interactive:hover {
+  transform: translateY(-2px);
+  border-color: rgba(250, 204, 21, 0.45);
+}
+
+.btn-press {
+  transition:
+    transform 120ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.btn-press:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+@keyframes reduced-motion-loading {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-interactive,
+  .btn-press,
+  [role="progressbar"] > div {
+    transition-property: opacity, background-color, border-color, color;
+    transition-duration: 150ms !important;
+    transition-timing-function: ease;
+  }
+  .card-interactive:hover,
+  .btn-press:active:not(:disabled) {
+    transform: none;
+  }
+  .animate-pulse {
+    animation: none !important;
+  }
+  .animate-spin {
+    animation: reduced-motion-loading 1.6s ease-in-out infinite !important;
+    transform: none !important;
+  }
+}
+
+/* Scrollbar sobrio para tablas y paneles oscuros */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2e2e2e;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444444;
+}
