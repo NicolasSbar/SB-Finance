@@ -266,9 +266,10 @@ Aislamiento estricto del ahorro líquido y capital inmovilizado en Plazos Fijos 
 ![Gestión de Plazos Fijos](./docs/screenshots/03-inversiones/02-plazos-fijos.jpg)
 
 ### 4. Herramientas de Decisión y Asistente de Presupuesto con IA
-Matriz cartesiana 2×2 (*Impacto vs. Costo*) con Drag & Drop nativo y Asistente de Presupuesto multimodal (`Gemini Flash`) con consultas por texto o grabación de voz (`MediaRecorder`).
+Matriz cartesiana 2×2 (*Impacto vs. Costo*) con Drag & Drop nativo, Simulador efímero de gastos ("¿Qué pasa si...?") y Asistente de Presupuesto multimodal (`Gemini Flash`) con consultas por texto o grabación de voz (`MediaRecorder`).
 
 ![Matriz de Prioridad de Compras 2x2](./docs/screenshots/04-decision-y-asistente-ia/01-matriz-prioridad.jpg)
+![Simulador de Gastos Efímero](./docs/screenshots/04-decision-y-asistente-ia/04-simulador-gastos.jpg)
 ![Asistente de Presupuesto con IA — Consulta y Diagnóstico](./docs/screenshots/04-decision-y-asistente-ia/02-asistente-ia-analisis.jpg)
 ![Asistente de Presupuesto con IA — Límites Sugeridos](./docs/screenshots/04-decision-y-asistente-ia/03-asistente-ia-limites.jpg)
 
