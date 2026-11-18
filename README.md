@@ -126,7 +126,7 @@ SB-Finance/
 ├── api/
 │   └── keep-alive.ts                     # Vercel Serverless Cron para keep-alive de Supabase en producción
 ├── docs/
-│   └── screenshots/                      # Directorio destinado a capturas de pantalla del portafolio
+│   └── screenshots/                      # Capturas de pantalla del portafolio organizadas por módulo
 ├── scripts/
 │   └── bundle-edge-functions.mjs         # Generador de bundles autocontenidos para despliegue de Edge Functions
 ├── specs/                                # Documentación Spec-Driven Development (SDD)
@@ -246,17 +246,34 @@ npm run build
 
 ## Capturas de Pantalla
 
-> Para completar la presentación visual del repositorio en tu portafolio, guardá las siguientes 3 capturas dentro de la carpeta [`docs/screenshots/`](./docs/screenshots/) respetando exactamente estos nombres de archivo (utilizando datos de demostración, nunca saldos o correos reales):
+### 1. Dashboard Ejecutivo y Analítica
+Vista principal del **Disponible Real del Mes**, resumen de ingresos y ahorro apartado, barras progresivas unificadas (`Comprometido` y `Bolsa de Gustitos`) y gráficos responsivos en Recharts.
 
-1. **`docs/screenshots/dashboard.png`** — Vista ejecutiva del **Dashboard** (`/`) mostrando la tarjeta protagonista *Disponible Real del Mes*, las dos barras progresivas `0% → 100%` (*Comprometido* y *Bolsa de Gustitos*) y la pestaña *Resumen y Gráficos* con los gráficos de Recharts.
-2. **`docs/screenshots/decision-tools.png`** — Vista de la **Matriz de Prioridad** (`/priority-matrix`) con tarjetas distribuidas en los 4 cuadrantes *Impacto vs. Costo*, o una composición lado a lado junto al **Simulador de Gastos** (`/simulator`) mostrando la comparativa *Actual vs. Simulado*.
-3. **`docs/screenshots/telegram-ai.png`** — Captura del **Asistente de Presupuesto IA** (`/budget-assistant`) mostrando una propuesta comparativa generada (junto al grabador de audio) o un flujo del **Bot de Telegram** registrando un gasto por audio con saldo restante y botón `[❌ Anular]`.
+![Dashboard Ejecutivo — Disponible Real y Barras](./docs/screenshots/01-dashboard/01-dashboard-ejecutivo.jpg)
+![Dashboard Analítica — Distribución por Categoría y Balance](./docs/screenshots/01-dashboard/02-dashboard-analitica.png)
 
-### Dashboard Ejecutivo y Analítica
-![Dashboard Ejecutivo](./docs/screenshots/dashboard.png)
+### 2. Gestión Financiera Core (Movimientos, Fijos, Cuotas y Categorías)
+Control de gastos variables e ingresos extra (con trazabilidad de origen `Telegram` y marca `Gustito` / `Ahorro`), checklist mensual de compromisos y catálogo de categorías con borrado lógico.
 
-### Herramientas de Decisión: Matriz de Prioridad y Simulador
-![Matriz de Prioridad y Simulador](./docs/screenshots/decision-tools.png)
+![Movimientos del Mes y Trazabilidad Telegram](./docs/screenshots/02-gestion-core/01-movimientos.jpg)
+![Fijos y Cuotas — Checklist de Compromisos](./docs/screenshots/02-gestion-core/02-fijos-y-cuotas.jpg)
+![Catálogo de Categorías con Borrado Lógico](./docs/screenshots/02-gestion-core/03-categorias.jpg)
 
-### Inteligencia Artificial Multimodal y Bot de Telegram
-![Bot de Telegram Multimodal y Asistente IA](./docs/screenshots/telegram-ai.png)
+### 3. Inversiones y Bóveda Aislada
+Aislamiento estricto del ahorro líquido y capital inmovilizado en Plazos Fijos respecto del `Disponible Real` del Dashboard, con privacidad enmascarada por defecto.
+
+![Bóveda de Ahorros Aislada](./docs/screenshots/03-inversiones/01-boveda-ahorros.jpg)
+![Gestión de Plazos Fijos](./docs/screenshots/03-inversiones/02-plazos-fijos.jpg)
+
+### 4. Herramientas de Decisión y Asistente de Presupuesto con IA
+Matriz cartesiana 2×2 (*Impacto vs. Costo*) con Drag & Drop nativo y Asistente de Presupuesto multimodal (`Gemini Flash`) con consultas por texto o grabación de voz (`MediaRecorder`).
+
+![Matriz de Prioridad de Compras 2x2](./docs/screenshots/04-decision-y-asistente-ia/01-matriz-prioridad.jpg)
+![Asistente de Presupuesto con IA — Consulta y Diagnóstico](./docs/screenshots/04-decision-y-asistente-ia/02-asistente-ia-analisis.jpg)
+![Asistente de Presupuesto con IA — Límites Sugeridos](./docs/screenshots/04-decision-y-asistente-ia/03-asistente-ia-limites.jpg)
+
+### 5. Configuración, Bot de Telegram y Administración
+Parámetros base del presupuesto mensual, día de cobro, zona horaria multi-timezone, vinculación privada 1:1 con Telegram y alta administrativa de usuarios (`is_admin`).
+
+![Configuración de Presupuesto Mensual, Gustitos y Zona Horaria](./docs/screenshots/05-configuracion-y-telegram/01-configuracion-presupuesto.jpg)
+![Vinculación con Bot de Telegram y Administración de Usuarios](./docs/screenshots/05-configuracion-y-telegram/02-telegram-y-administracion.jpg)
